@@ -7,7 +7,7 @@ We can Use this README file to write notes to each other and discribe the projec
 It uses Markdown formating. If you don't know what that is, don't worry, markdown is designed to be unobtrusive.
 
 
-Links
------
+Asignment Links
+---------------
 [Assignment](https://csf14.wikispaces.com/Air+Travel+Planner)  
 [Hacks and hints](https://csf14.wikispaces.com/Air+Travel+Hints+and+Hacks)
