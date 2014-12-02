@@ -14,12 +14,10 @@ public class FlightDriver{
       ArrayList<Flight> allFlights = new ArrayList<Flight>();
       allFlights = Flight.readLines(scan);
       Itinerary.makeCostItin(allFlights);
-      
       }
     catch (Exception e){        
          System.out.println("This file name can't be found. Enter a valid file name.");      
        }
-    
     nameReader.close(); 
   }
 }
