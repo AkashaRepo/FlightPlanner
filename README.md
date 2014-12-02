@@ -1,5 +1,9 @@
 FlightPlanner
 =============
+This is the Github Repository for Nsheppard and Weshney's Air Travel Planner java project.
+All .java files should go in the src sub-folder. The files with periods in front of them (dotfiles) are Eclipse stuff, so please ignore them.
+
+We can Use this README file to write notes to each other and discribe the project once it's in a more coherent state.
 
 [Assignment](https://csf14.wikispaces.com/Air+Travel+Planner)
 
