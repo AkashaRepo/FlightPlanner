@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 
 public class FlightDriver{
@@ -7,17 +6,19 @@ public class FlightDriver{
     String fileName;
     Scanner nameReader = new Scanner(System.in);
     System.out.println("Enter a file name");
+    
     //while a fileName was entered
     try {
       fileName = nameReader.nextLine();
-      scan = new Scanner(new FileReader(fileName));
-      ArrayList<Flight> allFlights = new ArrayList<Flight>();
-      allFlights = Flight.readLines(scan);
-      Itinerary.makeCostItin(allFlights);
+      Scanner scan = new Scanner(new FileReader(fileName));
+      Flight.readLines(scan);
+      Flight.printAllFlights(Flight.getAvalFlights());
+      
       }
     catch (Exception e){        
          System.out.println("This file name can't be found. Enter a valid file name.");      
        }
+    
     nameReader.close(); 
   }
 }
