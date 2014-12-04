@@ -7,36 +7,38 @@
  */
 
 
+  
 import java.util.*;
 public class Flight{
   
   private int flightNumber;
-  private String origin;
-  private String destination;
+  private Airport origin;
+  private Airport destination;
   private int departure;
   private int arrival;
   private double price;
   private int numOfSeats; 
   private String airline;
   private String layovers;
-  private static ArrayList<Flight> avalFlights;
+  private static ArrayList<Flight> avalFlights = new ArrayList<Flight>(); //availible flights
   
   public Flight(String flightNum, String orig, String dest, String dep, String arr, String pri, String numOfS, String ai, String la){
     flightNumber = Integer.parseInt(flightNum);
-    origin = orig;
-    destination = dest;
+    origin = Airport.findAnAirportNamed(orig);
+    destination = Airport.findAnAirportNamed(dest);
     departure = Integer.parseInt(dep);
     arrival = Integer.parseInt(arr);
     price = Double.valueOf(pri);
     numOfSeats = Integer.parseInt(numOfS);
     airline = ai;
     layovers = la;
+    avalFlights.add(this);
   }
   
   //print the contents of the object
   public void printFlight(){
-    System.out.println("flight number: " + this.flightNumber + "   origin: " + this.origin  + "   destination: " + 
-                       this.destination + "   departure: " + this.departure + "   arrival: " + this.arrival + "   price " + this.price
+    System.out.println("flight number: " + this.flightNumber + "   origin: " + (this.origin).getAirportName()  + "   destination: " + 
+                       (this.destination).getAirportName() + "   departure: " + this.departure + "   arrival: " + this.arrival + "   price " + this.price
                        + "   number of seats remaining: " + this.numOfSeats + "   airline: " + this.airline+ "   layovers: " + this.layovers);
   }
  
@@ -50,23 +52,21 @@ public class Flight{
     
 /*readLines takes in the file line by line and passes it to processLine to be turned into objects, 
   then it takes those objects and turns them into an ArrayList to be returned to the main method and stored in a temp arrayList */
-  public static ArrayList<Flight> readLines(Scanner scan){ 
-     ArrayList<Flight> allFlights = new ArrayList<Flight>();
+  public static void readLines(Scanner scan){ 
      while(scan.hasNext()){
-       Flight temp;
-       temp = processLine(scan.nextLine());
-       allFlights.add(temp);
+       processLine(scan.nextLine());
      }
      scan.close();
-     avalFlights = allFlights;
-     return allFlights;
    }
   
   
   //gets each position in the line and assigns it to an object
-  public static Flight processLine(String line){
+  private static Flight processLine(String line){
     StringTokenizer str = new StringTokenizer(line, " ,!?.;");
     Flight newObject = new Flight(str.nextToken(), str.nextToken(), str.nextToken(), str.nextToken(), str.nextToken(), str.nextToken(), str.nextToken(), str.nextToken(), "none");
+    //finds the flight origin and destination and goes to those airports and updates their lists to include that flight
+    (newObject.getOrigin()).addFlightToAirportArrayList(newObject);
+    (newObject.getDestination()).addFlightToAirportArrayList(newObject);
     return newObject;
   }
 
@@ -75,11 +75,11 @@ public class Flight{
     return flightNumber;
   }
   
-  public String getOrigin(){
+  public Airport getOrigin(){
     return origin;
   }
   
-  public String getDestination(){
+  public Airport getDestination(){
     return destination;
   }
   
@@ -112,16 +112,20 @@ public class Flight{
     return avalFlights;
   }
   
+  public String toString(){
+    return origin.toString() + "-->" + destination.toString();
+  }
+  
   //set methods 
   public void setFlightNumber(int num){
     this.flightNumber = num;
   }
   
-  public void setOrigin(String org){
+  public void setOrigin(Airport org){
     this.origin = org;
   }
  
-  public void setDestination(String dest){
+  public void setDestination(Airport dest){
     this.destination = dest;
   }
   
@@ -149,4 +153,5 @@ public class Flight{
     this.layovers = lay;
   }
 }
+  
   
