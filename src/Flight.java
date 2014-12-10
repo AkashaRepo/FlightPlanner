@@ -6,8 +6,6 @@
  * They might also have a ticket price.
  */
 
-
-  
 import java.util.*;
 public class Flight{
   
