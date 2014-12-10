@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Airport{
@@ -49,6 +48,14 @@ public class Airport{
   public String toString(){
     return name+ " " + city;
   }
+  
+  public static void printPossibleDestinations(Airport object){
+    System.out.println("Your possible destinations leaving from " + object.toString() + " are: ");
+    for(Flight s: object.thisAirportsFlights){
+      System.out.println(s.getDestination());
+    }
+  } 
+  
  
   //print allAirports (all the flights read in)
   public static void printAllAirports(){
